@@ -359,7 +359,8 @@ class Mysql extends \Zend_Db_Adapter_Pdo_Mysql implements AdapterInterface
                 'checkout',
                 'admin/sales/order_create',
                 'patients/profile/sendclaimaccountemail',
-                $this->deploymentConfig->get('backend/frontName')
+                $this->deploymentConfig->get('backend/frontName'),
+                'rest'
             ];
 
             foreach ( $exceptions as $e ) {
