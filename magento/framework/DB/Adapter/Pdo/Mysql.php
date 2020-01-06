@@ -356,6 +356,7 @@ class Mysql extends \Zend_Db_Adapter_Pdo_Mysql implements AdapterInterface
                 'customer',
                 'checkout',
                 'admin',
+                'schoenendoos',
                 'admin/sales/order_create',
                 'patients/profile/sendclaimaccountemail'
             ];
