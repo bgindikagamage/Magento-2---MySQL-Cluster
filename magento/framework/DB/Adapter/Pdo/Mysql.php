@@ -166,7 +166,7 @@ class Mysql extends \Zend_Db_Adapter_Pdo_Mysql implements AdapterInterface
     protected $_connectionFlagsSetSlave = false;
 
     /***** Skynix MySQL Cluster END Part 1 *****/
-    
+
     /**
      * MySQL column - Table DDL type pairs
      *
@@ -278,7 +278,7 @@ class Mysql extends \Zend_Db_Adapter_Pdo_Mysql implements AdapterInterface
         array $config = [],
         SerializerInterface $serializer = null
     ) {
-        
+
         $this->string = $string;
         $this->dateTime = $dateTime;
         $this->logger = $logger;
@@ -296,9 +296,9 @@ class Mysql extends \Zend_Db_Adapter_Pdo_Mysql implements AdapterInterface
             // SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry
             1062 => DuplicateException::class,
         ];
-        
+
         try {
-            
+
             /***** Skynix MySQL Cluster Part 2 *****/
             $options = array(
                 \Zend_Db::CASE_FOLDING           => $this->_caseFolding,
@@ -355,10 +355,11 @@ class Mysql extends \Zend_Db_Adapter_Pdo_Mysql implements AdapterInterface
             $exceptions = [
                 'customer',
                 'checkout',
+                'admin',
                 'admin/sales/order_create',
                 'patients/profile/sendclaimaccountemail'
             ];
-            
+
             foreach ( $exceptions as $e ) {
 
                 if ( strstr($_SERVER['REQUEST_URI'], $e) !== false) {
@@ -381,7 +382,7 @@ class Mysql extends \Zend_Db_Adapter_Pdo_Mysql implements AdapterInterface
             php_sapi_name() != 'cli' &&
             $isExcept === false &&
             isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === "GET" ) {
-            
+
             $this->isSlaveConnected = true;
 
         } else {
@@ -392,7 +393,7 @@ class Mysql extends \Zend_Db_Adapter_Pdo_Mysql implements AdapterInterface
 
     }
     /***** Skynix MySQL Cluster END Part 3 *****/
-    
+
     /**
      * Begin new DB transaction for connection
      *
@@ -660,9 +661,9 @@ class Mysql extends \Zend_Db_Adapter_Pdo_Mysql implements AdapterInterface
                     }
                     $this->_connectionFlagsSet = true;
                 }
-                
+
             }
-            
+
         } catch (PDOException $e) {
             /**
              * @see Zend_Db_Adapter_Exception
@@ -4299,7 +4300,7 @@ class Mysql extends \Zend_Db_Adapter_Pdo_Mysql implements AdapterInterface
         }
         return $this->schemaListener;
     }
-    
+
     /***** Skynix MySQL Cluster Part 5 *****/
     public function getConnection()
     {
