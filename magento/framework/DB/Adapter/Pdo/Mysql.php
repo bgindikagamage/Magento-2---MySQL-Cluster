@@ -27,7 +27,7 @@ use Magento\Framework\Serialize\SerializerInterface;
 use Magento\Framework\Stdlib\DateTime;
 use Magento\Framework\Stdlib\StringUtils;
 use Magento\Framework\Setup\SchemaListener;
-
+use Magento\Framework\App\DeploymentConfig;
 // @codingStandardsIgnoreStart
 
 /**
@@ -275,6 +275,7 @@ class Mysql extends \Zend_Db_Adapter_Pdo_Mysql implements AdapterInterface
         DateTime $dateTime,
         LoggerInterface $logger,
         SelectFactory $selectFactory,
+        DeploymentConfig $deploymentConfig,
         array $config = [],
         SerializerInterface $serializer = null
     ) {
@@ -283,6 +284,7 @@ class Mysql extends \Zend_Db_Adapter_Pdo_Mysql implements AdapterInterface
         $this->dateTime = $dateTime;
         $this->logger = $logger;
         $this->selectFactory = $selectFactory;
+        $this->deploymentConfig = $deploymentConfig;
         $this->serializer = $serializer ?: ObjectManager::getInstance()->get(SerializerInterface::class);
         $this->exceptionMap = [
             // SQLSTATE[HY000]: General error: 2006 MySQL server has gone away
@@ -355,10 +357,9 @@ class Mysql extends \Zend_Db_Adapter_Pdo_Mysql implements AdapterInterface
             $exceptions = [
                 'customer',
                 'checkout',
-                'admin',
-                'schoenendoos',
                 'admin/sales/order_create',
-                'patients/profile/sendclaimaccountemail'
+                'patients/profile/sendclaimaccountemail',
+                $this->deploymentConfig->get('backend/frontName')
             ];
 
             foreach ( $exceptions as $e ) {
