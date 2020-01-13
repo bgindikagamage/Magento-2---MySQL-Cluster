@@ -412,6 +412,7 @@ class Mysql extends \Zend_Db_Adapter_Pdo_Mysql implements AdapterInterface
         }
         if ($this->_transactionLevel === 0) {
             $this->logger->startTimer();
+            $this->_connection->query("SET TRANSACTION ISOLATION LEVEL READ COMMITTED");
             parent::beginTransaction();
             $this->logger->logStats(LoggerInterface::TYPE_TRANSACTION, 'BEGIN');
         }
