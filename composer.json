@@ -1,5 +1,5 @@
 {
-    "name": "myvitamins/m2-mysql-cluster",
+    "name": "indika/m2-mysql-cluster",
     "type": "library",
     "license": "OSL-3.0",
     "description": "Magento 2 CE SQL cluster enabled Magento 2 CE to work with database replication",
@@ -8,6 +8,10 @@
         {
             "name": "Oleksii Prozhoha",
             "email": "oleksii.prozhoha@skynix.co"
+        },
+        {
+            "name": "Indika Gamage",
+            "email": "indika@indikagamage.com"
         }
     ],
     "require": {
